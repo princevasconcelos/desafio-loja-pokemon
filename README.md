@@ -1,4 +1,4 @@
-Parabéns pessoa, **nós escolhemos você** para a próxima etapa do nosso processo seletivo!
+Parabéns pessoa, **nós escolhemos você** para o nosso processo seletivo!
 
 Aqui na B2W Digital estamos sempre em busca de pessoas que estejam dispostas a achar todas as insígnias para resolver um problema. E para isso estamos propondo a você um desafio, mas não se preocupe, você conseguirá fazê-lo sentado em sua cadeira.
 
@@ -32,4 +32,4 @@ Caso isso tudo seja pouco e você queira batalhar em outros ginásios, não se p
 
 Recomendamos a utilização da biblioteca ReactJS com o comando create-react-app, mas sinta-se livre para utilizar a tecnologia que preferir, mas não se esqueça que uma aplicação shiny é uma aplicação bem testada e que funcione em todos os tamanhos de tela.
 
-Esperamos que você tenha gostado do desafio e que esteja ansioso para evoluir seus Pokémon conosco na B2W. Responda esse e-mail com quanto tempo você deseja para realizar o desafio e o que achou dele, queremos saber como podemos fazer melhor para conseguirmos os melhores treinadores no nosso time!
+Esperamos que você tenha gostado do desafio e que esteja ansioso para evoluir seus Pokémon conosco na B2W. Nos responda quanto tempo você deseja para realizar o desafio e o que achou dele, queremos saber como podemos fazer melhor para conseguirmos os melhores treinadores no nosso time!
