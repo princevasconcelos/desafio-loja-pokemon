@@ -1,24 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import Home from "pages/Home";
+import Details from "pages/Details";
+import Type from 'pages/Type'
+
+import GlobalStyles from "GlobalStyles";
+
+import Header from "components/Header";
+import Cart from 'components/Cart'
+
+import { DataProvider } from 'contexts/data'
+
+import themes from 'themes'
+
+const RootContainer = styled.div`
+  position: relative;
+`;
+
+const Content = styled.main`
+  display: flex;
+  max-width: 1280px;
+  margin: 24px auto 0;
+  justify-content: center;
+  // prince
+
+  > div {
+    flex: 1;
+    padding: 0 16px;
+
+    @media (min-width: 600px) {
+      padding: 0;
+    }
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RootContainer>
+      <GlobalStyles />
+      <DataProvider>
+        <Router basename="/">
+          <ThemeProvider theme={themes()}>
+            <Header />
+            <Content>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/pokemon/:name?"  component={Details} />
+              {/* <Route exact path="/tipo/:type?" component={Type} /> */}
+              <Cart />
+            </Content>
+          </ThemeProvider>
+        </Router>
+      </DataProvider>
+    </RootContainer>
   );
 }
 
