@@ -12,33 +12,6 @@ const DataContext = React.createContext()
 
 function dataReducer(state, { type, payload }) {
     switch (type) {
-      case 'UPDATE_CART': {
-        const {
-          quantity,
-          pokemon: {
-            name,
-            weight
-          }
-        } = payload
-
-        return {
-            ...state,
-            cart: {
-              ...state.cart,
-              [name]: {
-                quantity: state.cart[name]
-                  ? state.cart[name].quantity + quantity 
-                  : quantity,
-                price: weight,
-              }
-            }
-        }
-      }
-      case 'REMOVE_FROM_CART': {
-        const newState = {...state}
-        delete newState.cart[payload.name]
-        return newState
-      }
       case 'SAVE_ENDPOINT_RESULT': {
         const {url, result} = payload
         return {
@@ -58,7 +31,7 @@ function dataReducer(state, { type, payload }) {
             }
         }
       }
-      case 'BUY_POKEMON': {
+      case 'ADD_POKEMON_TO_CART': {
         const { name, weight } = state.pokemons[payload]
 
         return {
@@ -73,6 +46,23 @@ function dataReducer(state, { type, payload }) {
             }
           }
         }
+      }
+      case 'REMOVE_POKEMON_FROM_CART': {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            [payload]: {
+              ...state.cart[payload],
+              quantity: state.cart[payload].quantity - 1
+            }
+          }
+        }
+      }
+      case 'CLEAN_POKEMON_FROM_CART': {
+        const newState = {...state}
+        delete newState.cart[payload]
+        return newState
       }
       case 'CHANGE_THEME': {
         return {
@@ -89,18 +79,8 @@ function dataReducer(state, { type, payload }) {
 export function DataProvider ({ children, value }) {
     const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE)
 
-    const updateCart = payload => dispatch({
-        type: 'UPDATE_CART',
-        payload
-    })
-
     const savePokemonData = payload => dispatch({
       type: 'SAVE_POKEMON_DATA',
-      payload
-    })
-
-    const removePokemon = payload => dispatch({
-      type: 'REMOVE_FROM_CART',
       payload
     })
 
@@ -115,18 +95,28 @@ export function DataProvider ({ children, value }) {
     })
 
     const buyPokemon = payload => dispatch({
-      type: 'BUY_POKEMON',
+      type: 'ADD_POKEMON_TO_CART',
+      payload
+    })
+
+    const removePokemon = payload => dispatch({
+      type: 'REMOVE_POKEMON_FROM_CART',
+      payload
+    })
+
+    const cleanPokemon = payload => dispatch({
+      type: 'CLEAN_POKEMON_FROM_CART',
       payload
     })
 
     return <DataContext.Provider value={{
       ...state,
-      updateCart,
       savePokemonData,
-      removePokemon,
       saveEndpointResult,
       changeTheme,
       buyPokemon,
+      removePokemon,
+      cleanPokemon,
       ...value
   }}>{children}</DataContext.Provider>
   }

@@ -7,6 +7,7 @@ import Loading from 'components/Loading'
 import Button from 'components/Button'
 
 import * as S from './styles'
+import * as H from 'utils/helpers'
 
 export default () => {
     const [data, setData] = useState({})
@@ -62,7 +63,7 @@ export default () => {
 
     if (Object.keys(data).length === 0) return <S.Message>Não existem informações para esse pokemon</S.Message>
 
-    const { stats, moves, abilities, sprites} = data
+    const { stats, moves, abilities, sprites, weight } = data
     console.log('prince', {
         stats, moves, abilities, sprites
     })
@@ -72,6 +73,7 @@ export default () => {
             <S.ImageContainer>
                 <img src={sprites.other.dream_world.front_default} />
                 <S.Heading>{name}</S.Heading>
+                <span>R$ {H.priceFormat(weight)}</span>
                 <Button onClick={handleBuyButton}>Comprar</Button>
             </S.ImageContainer>
             <S.TextsContainer>

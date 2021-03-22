@@ -10,8 +10,12 @@ export const DetailsContainer = styled.div`
     }
 
     > a {
-        margin-left: 24px;
         font-weight: 700;
+
+        @media (min-width: 600px) {
+            margin-left: 24px;
+        }
+
         &:hover {
             text-decoration: underline;
         }
@@ -31,10 +35,39 @@ export const ImageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 16px 0;
+
+    > img {
+        max-width: 200px;
+    }
+
+    > h1 {
+        font-size: 16px;
+    }
 
     button {
         margin: 24px 0 0;
     }
+
+    span {
+        font-size: 22px;
+        margin-top: 8px;
+        white-space: nowrap;
+    }
+
+    @media (min-width: 600px) {
+        margin: 0;
+
+        > img {
+            max-width: 1200px;
+        }
+
+        > h1 {
+            font-size: 64px;
+        }
+    }
+
+    
 `
 
 export const List = styled.div`

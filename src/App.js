@@ -17,6 +17,16 @@ import themes from 'themes'
 
 const RootContainer = styled.div`
   position: relative;
+
+  @media (min-width: 800px) {
+    padding: 0 124px;
+}
+
+  > aside:hover ~ #blackwindow {
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+  }
 `;
 
 const Content = styled.main`
@@ -47,9 +57,9 @@ function App() {
             <Content>
               <Route exact path="/" component={Home} />
               <Route exact path="/pokemon/:name?"  component={Details} />
-              {/* <Route exact path="/tipo/:type?" component={Type} /> */}
-              <Cart />
+              <Route exact path="/tipo/:type?" component={Type} />
             </Content>
+            <Cart />
           </ThemeProvider>
         </Router>
       </DataProvider>

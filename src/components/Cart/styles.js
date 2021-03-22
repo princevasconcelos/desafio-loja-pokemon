@@ -1,24 +1,54 @@
 import styled from 'styled-components'
 
 export const Cart = styled.aside`
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
-    width: 320px;
+    width: 124px;
     height: 100vh;
     padding: 16px;
     background: #f8f8f8;
-    background: indigo;
+    overflow-y: auto;
+    overflow-x: hidden;
     top: 0;
     right: 0;
+    z-index: 2;
+    transition: all .2s;
+    border-left: 1px solid lightgray;
 
-    > span {
-        font-size: 20px;
+    &:hover {
+        width: 320px;
+
+        span, #counter, button {
+            display: block;
+        }
+
+        > strong {
+            text-align: left;
+            font-size: 18px;
+        }
     }
 
-    > ul {
-        // 
+    > strong {
+        text-align: center;
+        font-size: 14px;
     }
+
+    span, #counter, button {
+        display: none;
+    }
+`
+
+export const BlackWindow = styled.div`
+    width: 0;
+    height: 0;
+    background: black;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: opacity .4s;
 `
 
 export const Amount = styled.div`
@@ -32,8 +62,9 @@ export const CartItem = styled.li`
     display: flex;
     justify-content: space-between;
     padding: 16px 0;
-    border-bottom: 1px solid lightgray;
-    
+    &:not(:last-child) {
+        border-bottom: 1px solid lightgray;
+    }
 
     > div {
         display: flex;
@@ -50,5 +81,15 @@ export const CounterContainer = styled.div`
         text-transform: capitalize;
         margin-top: 8px;
         margin-left: 8px;
+    }
+`
+
+export const NameContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        text-transform: capitalize;
     }
 `

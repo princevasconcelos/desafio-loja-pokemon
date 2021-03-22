@@ -8,18 +8,9 @@ import * as H from 'utils/helpers'
 import * as S from './styles'
 
 export default () => {
-    const { cart, pokemons, updateCart, removePokemon } = useContext(DataContext)
+    const { cart, pokemons, buyPokemon, removePokemon, cleanPokemon } = useContext(DataContext)
     const hasValues = Object.entries(cart)
     let total = 0
-
-    // const pokemon = data.find(({ name }) => name === targetName)
-    //     if (!pokemon) return
-
-    //     updateCart({
-    //         quantity: 1,
-    //         pokemon
-    //     })
-
 
     const findPokemonData = $clickedElement => {
         const pokeName = $clickedElement.parentElement.parentElement.parentElement
@@ -28,47 +19,53 @@ export default () => {
         return pokemons[pokeName]
     }
 
-    const handleIncrease = ({ target }) => updateCart({
-        quantity: 1,
-        pokemon: findPokemonData(target)
-    })
-    const handleDecrease = ({ target }) => updateCart({
-        quantity: -1,
-        pokemon: findPokemonData(target)
-    })
-
-    const handleClean = ({ target }) => removePokemon(findPokemonData(target))
+    const handleIncrease = name => buyPokemon(name)
+    const handleDecrease = name => removePokemon(name)
+    const handleClean = name => cleanPokemon(name)
 
     if (hasValues.length === 0) return <></>
-
+    console.log('prince', {
+        hasValues,
+        pokemons,
+        cart
+    })
     return (
-        <S.Cart>
-            <span>Resumo do pedido</span>
-            <ul>
-                {hasValues.length > 0 && hasValues.map(([name, pokemon]) => {
-                    const itemPrice = pokemon.price * pokemon.quantity
-                    total += itemPrice
+        <>
+            <S.Cart>
+                <strong>Resumo do pedido</strong>
+                <ul>
+                    {hasValues.length > 0 && hasValues.map(([name, information]) => {
+                        const itemPrice = information.price * information.quantity
+                        const pokemon = pokemons[name]
+                        console.log('prince', pokemon)
+                        total += itemPrice
 
-                    return (
-                        <S.CartItem key={name}>
-                            <S.CounterContainer>
-                                <Counter
-                                    value={pokemon.quantity}
-                                    onClean={handleClean}
-                                    onIncrease={handleIncrease}
-                                    onDecrease={handleDecrease} /> 
-                                <span>{name}</span>
-                            </S.CounterContainer>
-                            <span>R$ {H.priceFormat(itemPrice)}</span>
-                        </S.CartItem>
-                    )
-                })}
-            </ul>
-            <S.Amount>
-                <span>Total</span>
-                <span>R$ {H.priceFormat(total)}</span>
-            </S.Amount>
-            <Button>Finalizar</Button>
-        </S.Cart>
+                        return (
+                            <S.CartItem key={name}>
+                                <S.CounterContainer>
+                                    <Counter
+                                        id="counter"
+                                        value={information.quantity}
+                                        onClean={() => handleClean(name)}
+                                        onIncrease={() => handleIncrease(name)}
+                                        onDecrease={() => handleDecrease(name)} /> 
+                                </S.CounterContainer>
+                                <S.NameContainer>
+                                    <span>{name}</span>
+                                    <img src={pokemon.sprites.front_default} />
+                                </S.NameContainer>
+                                <span>R$ {H.priceFormat(itemPrice)}</span>
+                            </S.CartItem>
+                        )
+                    })}
+                </ul>
+                <S.Amount>
+                    <span>Total</span>
+                    <span>R$ {H.priceFormat(total)}</span>
+                </S.Amount>
+                <Button>Finalizar</Button>
+            </S.Cart>
+            <S.BlackWindow id="blackwindow" />
+        </>
     )
 }

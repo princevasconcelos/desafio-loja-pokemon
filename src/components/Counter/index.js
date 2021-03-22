@@ -8,6 +8,7 @@ const Counter = styled.div`
 
     > button {
         margin-top: 4px;
+        font-size: 14px;
 
         &:hover {
             text-decoration: underline;
@@ -18,8 +19,9 @@ const Counter = styled.div`
 const ButtonsContainer = styled.div`
     border: 2px solid #333;
     border-radius: 3px;
-    min-width: 70px;
+    min-width: 50px;
     display: flex;
+    flex-direction: column;
     align-items: center;
 
     button {
@@ -39,13 +41,13 @@ const ButtonsContainer = styled.div`
     }
 `
 
-export default ({ value, onIncrease, onDecrease, onClean }) => {
+export default ({ value, onIncrease, onDecrease, onClean, id }) => {
     return (
-        <Counter>
+        <Counter id={id}>
             <ButtonsContainer>
-                <button disabled={value === 1} onClick={onDecrease}>-</button>
-                <i>{value}</i>
                 <button disabled={value === 99} onClick={onIncrease}>+</button>
+                <i>{value}</i>
+                <button disabled={value === 1} onClick={onDecrease}>-</button>
             </ButtonsContainer>
             <button onClick={onClean}>remover</button>
         </Counter>
