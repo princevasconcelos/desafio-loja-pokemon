@@ -1,16 +1,16 @@
-import React, {useContext} from "react";
-import styled from "styled-components";
-import {Link, useHistory} from 'react-router-dom'
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import { Link, useHistory } from 'react-router-dom'
 
-import Search from "components/Search";
-import Menu from "components/Menu";
+import Search from 'components/Search'
+import Menu from 'components/Menu'
 import DataContext from 'contexts/data'
 
-import { CgPokemon } from "react-icons/cg";
+import { CgPokemon } from 'react-icons/cg'
 
 const HeaderContainer = styled.div`
-  background: ${(props) => props.theme.colors.primary};
-`;
+  background: ${props => props.theme.colors.primary};
+`
 
 const Logo = styled(Link)`
   display: flex;
@@ -25,17 +25,17 @@ const Logo = styled(Link)`
       display: block;
     }
   }
-`;
+`
 
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 16px;
-`;
+`
 
 export default () => {
   const history = useHistory()
-  const {changeTheme} = useContext(DataContext)
+  const { changeTheme } = useContext(DataContext)
 
   const handleLogoClick = () => changeTheme('normal')
 
@@ -53,10 +53,10 @@ export default () => {
           <CgPokemon size="40px" />
           <strong>POKESHOP</strong>
         </Logo>
-  
+
         <Search placeholder="Buscar Pokemon" onSubmit={searchPokemon} />
       </LogoContainer>
       <Menu />
     </HeaderContainer>
-  );
+  )
 }

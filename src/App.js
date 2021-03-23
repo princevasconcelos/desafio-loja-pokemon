@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 import Routes from 'routers'
 
-import GlobalStyles from "GlobalStyles";
+import GlobalStyles from 'GlobalStyles'
 import { DataProvider } from 'contexts/data'
 
 const RootContainer = styled.div`
@@ -22,4 +22,4 @@ export default () => (
       <Routes />
     </DataProvider>
   </RootContainer>
-);
+)

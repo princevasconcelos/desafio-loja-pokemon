@@ -1,11 +1,10 @@
-import React, {useReducer, useEffect} from 'react'
+import React, { useReducer, useEffect } from 'react'
 
 const INITIAL_STATE = {
-    cart: {},
-    pokemons: {},
-    // search: {},
-    endpoints: {},
-    theme: 'normal'
+  cart: {},
+  pokemons: {},
+  endpoints: {},
+  theme: 'normal',
 }
 
 const DataContext = React.createContext()
@@ -13,22 +12,22 @@ const DataContext = React.createContext()
 function dataReducer(state, { type, payload }) {
   switch (type) {
     case 'SAVE_ENDPOINT_RESULT': {
-      const {url, result} = payload
+      const { url, result } = payload
       return {
         ...state,
         endpoints: {
           ...state.endpoints,
-          [url]: result
-        }
+          [url]: result,
+        },
       }
     }
     case 'SAVE_POKEMON_DATA': {
       return {
-          ...state,
-          pokemons: {
-            ...state.pokemons,
-            ...payload
-          }
+        ...state,
+        pokemons: {
+          ...state.pokemons,
+          ...payload,
+        },
       }
     }
     case 'ADD_POKEMON_TO_CART': {
@@ -39,12 +38,10 @@ function dataReducer(state, { type, payload }) {
         cart: {
           ...state.cart,
           [name]: {
-            quantity: state.cart[name]
-              ? state.cart[name].quantity + 1 
-              : 1,
+            quantity: state.cart[name] ? state.cart[name].quantity + 1 : 1,
             price: weight,
-          }
-        }
+          },
+        },
       }
     }
     case 'REMOVE_POKEMON_FROM_CART': {
@@ -54,25 +51,25 @@ function dataReducer(state, { type, payload }) {
           ...state.cart,
           [payload]: {
             ...state.cart[payload],
-            quantity: state.cart[payload].quantity - 1
-          }
-        }
+            quantity: state.cart[payload].quantity - 1,
+          },
+        },
       }
     }
     case 'CLEAN_POKEMON_FROM_CART': {
-      const cartCopy = {...state.cart}
+      const cartCopy = { ...state.cart }
       delete cartCopy[payload]
       return {
         ...state,
         cart: {
-          ...cartCopy
-        }
+          ...cartCopy,
+        },
       }
     }
     case 'CHANGE_THEME': {
       return {
-          ...state,
-          theme: payload
+        ...state,
+        theme: payload,
       }
     }
     default: {
@@ -81,57 +78,69 @@ function dataReducer(state, { type, payload }) {
   }
 }
 
-export function DataProvider ({ children, overwrite }) {
-    const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE)
+export function DataProvider({ children, overwrite }) {
+  const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE)
 
-    useEffect(() => {
-      localStorage.setItem('cart', JSON.stringify(state.cart))
-    }, [state.cart])
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+  }, [state.cart])
 
-    useEffect(() => {
-      localStorage.setItem('theme', state.theme)
-    }, [state.theme])
+  useEffect(() => {
+    localStorage.setItem('theme', state.theme)
+  }, [state.theme])
 
-    const savePokemonData = payload => dispatch({
+  const savePokemonData = payload =>
+    dispatch({
       type: 'SAVE_POKEMON_DATA',
-      payload
+      payload,
     })
 
-    const saveEndpointResult = payload => dispatch({
+  const saveEndpointResult = payload =>
+    dispatch({
       type: 'SAVE_ENDPOINT_RESULT',
-      payload
+      payload,
     })
 
-    const changeTheme = payload => dispatch({
+  const changeTheme = payload =>
+    dispatch({
       type: 'CHANGE_THEME',
-      payload
+      payload,
     })
 
-    const buyPokemon = payload => dispatch({
+  const buyPokemon = payload =>
+    dispatch({
       type: 'ADD_POKEMON_TO_CART',
-      payload
+      payload,
     })
 
-    const removePokemon = payload => dispatch({
+  const removePokemon = payload =>
+    dispatch({
       type: 'REMOVE_POKEMON_FROM_CART',
-      payload
+      payload,
     })
 
-    const cleanPokemon = payload => dispatch({
+  const cleanPokemon = payload =>
+    dispatch({
       type: 'CLEAN_POKEMON_FROM_CART',
-      payload
+      payload,
     })
 
-    return <DataContext.Provider value={{
-      ...state,
-      savePokemonData,
-      saveEndpointResult,
-      changeTheme,
-      buyPokemon,
-      removePokemon,
-      cleanPokemon,
-      ...overwrite
-  }}>{children}</DataContext.Provider>
-  }
+  return (
+    <DataContext.Provider
+      value={{
+        ...state,
+        savePokemonData,
+        saveEndpointResult,
+        changeTheme,
+        buyPokemon,
+        removePokemon,
+        cleanPokemon,
+        ...overwrite,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  )
+}
 
 export default DataContext

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import "@fontsource/montserrat";
+import { createGlobalStyle } from 'styled-components'
+import '@fontsource/montserrat'
 
 export default createGlobalStyle`
 	*,
@@ -37,4 +37,4 @@ export default createGlobalStyle`
     ul {
         list-style: none;
     }
-`;
+`
