@@ -51,7 +51,7 @@ export default () => {
   };
 
   const getPokemonDetail = async (pokemons) => {
-    const pokeData = await Promise.all(pokemons.map(({ url }) => API.get(url.slice(0, -1))));
+    const pokeData = await Promise.all(pokemons.map(({ url }) => API.get(url.slice(0, -1)))).then(res => res.filter(Boolean));
 
     saveEndpointResult({
         url: typeEndpoint,

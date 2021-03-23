@@ -6,6 +6,7 @@ export const Cart = styled.aside`
     flex-direction: column;
     width: 124px;
     height: 100vh;
+    max-height: 100vh;
     padding: 16px;
     background: #f8f8f8;
     overflow-y: auto;

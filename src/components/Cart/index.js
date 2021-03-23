@@ -24,11 +24,7 @@ export default () => {
     const handleClean = name => cleanPokemon(name)
 
     if (hasValues.length === 0) return <></>
-    console.log('prince', {
-        hasValues,
-        pokemons,
-        cart
-    })
+
     return (
         <>
             <S.Cart>
@@ -37,7 +33,6 @@ export default () => {
                     {hasValues.length > 0 && hasValues.map(([name, information]) => {
                         const itemPrice = information.price * information.quantity
                         const pokemon = pokemons[name]
-                        console.log('prince', pokemon)
                         total += itemPrice
 
                         return (

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 import DataContext from 'contexts/data'
 import API from "service";
@@ -15,27 +15,37 @@ export default () => {
     const [loading, setLoading] = useState(false)
     const { pokemons, saveEndpointResult, savePokemonData, buyPokemon } = useContext(DataContext)
     const { name } = useParams();
+    const history = useHistory()
     const pokeDetailEndpoint = 'https://pokeapi.co/api/v2/pokemon/'+name
 
     const handleBuyButton = () => buyPokemon(name)
 
     useEffect(() => {
+        console.log('prince', name)
         if (!name) return
 
         const cacheData = pokemons[name]
+        console.log('prince', cacheData)
         if (cacheData) return setData(cacheData)
 
         getPokemonDetails()
     }, [name])
+
+    const handleBack = () => history.goBack()
 
     const getPokemonDetails = async () => {
         setLoading(true);
     
         try {
             const pokemon = await API.get(pokeDetailEndpoint)
-            
-            if (!pokemon) return setError(`Nenhum resultado encontrado para "${name}"`)
+            console.log('prince try pokemon', pokemon)
 
+            
+            if (!pokemon) {
+                alert(4044)
+                return setError(`Nenhum resultado encontrado para "${name}"`)
+            }
+            alert(200)
             setData(pokemon);
             saveEndpointResult({
                 url: pokeDetailEndpoint,
@@ -45,9 +55,9 @@ export default () => {
                 [name]: pokemon
             })
         } catch (err) {
-            console.log('prince errr', err.response)
             if (err.response.status === 404) {
-                setError(`Nenhum resultado encontrado para  "${name}"`)
+                alert(404)
+                setError(`Nenhum resultado encontrado para "${name}"`)
             }
         }
         finally {
@@ -55,7 +65,7 @@ export default () => {
         }
     };
 
-    if (loading) return <Loading />
+    if (loading) return <div><Loading /></div>
 
     if (!name) return <S.Message>Pesquise o nome do pokemon no pesquisar acima</S.Message>
 
@@ -64,12 +74,10 @@ export default () => {
     if (Object.keys(data).length === 0) return <S.Message>Não existem informações para esse pokemon</S.Message>
 
     const { stats, moves, abilities, sprites, weight } = data
-    console.log('prince', {
-        stats, moves, abilities, sprites
-    })
+
     return (
         <S.DetailsContainer>
-            <Link to="/">Voltar</Link>
+            <button onClick={handleBack}>Voltar</button>
             <S.ImageContainer>
                 <img src={sprites.other.dream_world.front_default} />
                 <S.Heading>{name}</S.Heading>

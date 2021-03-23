@@ -9,8 +9,9 @@ export const DetailsContainer = styled.div`
         font-size: 64px;
     }
 
-    > a {
+    > button {
         font-weight: 700;
+        text-align: left;
 
         @media (min-width: 600px) {
             margin-left: 24px;

@@ -53,7 +53,7 @@ export default () => {
   return (
     <S.HomeContainer>
       <h1>Todos os Pokemons</h1>
-      <p>Compre todos os pokemons que gostar ;)~</p>
+      <p>Gotta Catch 'Em All!</p>
       <Gallery data={data} loading={loading} />
     </S.HomeContainer>
   );

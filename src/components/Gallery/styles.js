@@ -31,7 +31,7 @@ export  const Item = styled.li`
         height: 24px;
         width: 100%;
         color: white;
-        background: #333;
+        background: ${props => props.theme.colors.primary};
         bottom: -24px;
         transition: all .1s;
         outline: none;

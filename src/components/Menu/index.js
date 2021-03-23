@@ -1,6 +1,5 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import * as S from './styles'
-import { ThemeContext } from 'styled-components';
 import {Link} from 'react-router-dom'
 
 import DataContext from 'contexts/data'
@@ -61,18 +60,15 @@ const menus = [
     }
 ]
 
-// const removeAccents = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-
 export default () => {
-    const [selected, setSelected] = useState('')
-    const themeContext = useContext(ThemeContext)
     const {theme, changeTheme} = useContext(DataContext)
-    // console.log('prince', themeContext)
-    const handleClick = selectedType => {
-        localStorage.setItem('theme', selectedType)
-        setSelected(selectedType)
-        // changeTheme(selectedType)
-    }
+    const [selected, setSelected] = useState(theme)
+
+    useEffect(() => {
+        setSelected(theme)
+    }, [theme])
+
+    const handleClick = selectedType => changeTheme(selectedType)
 
     return (
         <S.NavContainer>
