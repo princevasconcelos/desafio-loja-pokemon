@@ -24,10 +24,7 @@ export default ({ isVisible, handleCloseClick }) => {
   const handleIncrease = name => buyPokemon(name)
   const handleDecrease = name => removePokemon(name)
   const handleClean = name => cleanPokemon(name)
-
-  const handleOrderButton = () => {
-    setFinishModal(true)
-  }
+  const handleOrderButton = () => setFinishModal(true)
 
   const closeModal = () => {
     setFinishModal(false)

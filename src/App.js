@@ -8,6 +8,10 @@ import { DataProvider } from 'contexts/data'
 const RootContainer = styled.div`
   position: relative;
 
+  @media (min-width: 600px) {
+    padding: 0 124px
+  }
+
   > aside:hover ~ #blackwindow {
     width: 100%;
     height: 100%;
@@ -16,7 +20,7 @@ const RootContainer = styled.div`
 `
 
 export default () => (
-  <RootContainer>
+  <RootContainer id="rootContainer">
     <GlobalStyles />
     <DataProvider>
       <Routes />
