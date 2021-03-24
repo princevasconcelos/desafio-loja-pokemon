@@ -1,19 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
+import { GrClose } from 'react-icons/gr'
 
 import Button from 'components/Button'
 import Counter from 'components/Counter'
 import DataContext from 'contexts/data'
+import Modal from 'components/Modal'
 
 import * as H from 'utils/helpers'
 import * as S from './styles'
 
-export default () => {
+export default ({ isVisible, handleCloseClick }) => {
+  const [isFinishModalVisible, setFinishModal] = useState()
   const {
     cart,
-    pokemons,
     buyPokemon,
     removePokemon,
     cleanPokemon,
+    cleanCart,
   } = useContext(DataContext)
   const hasValues = Object.entries(cart)
   let total = 0
@@ -22,17 +25,28 @@ export default () => {
   const handleDecrease = name => removePokemon(name)
   const handleClean = name => cleanPokemon(name)
 
+  const handleOrderButton = () => {
+    setFinishModal(true)
+  }
+
+  const closeModal = () => {
+    setFinishModal(false)
+    cleanCart()
+  }
+
   if (hasValues.length === 0) return <></>
 
   return (
     <>
-      <S.Cart>
-        <strong>Resumo do pedido</strong>
+      <S.Cart isVisible={isVisible}>
+        <S.HeaderContainer>
+          <strong>Resumo do pedido</strong>
+          <GrClose onClick={handleCloseClick} size="16px" />
+        </S.HeaderContainer>
         <ul>
           {hasValues.length > 0 &&
             hasValues.map(([name, information]) => {
               const itemPrice = information.price * information.quantity
-              const pokemon = pokemons[name]
               total += itemPrice
 
               return (
@@ -50,7 +64,7 @@ export default () => {
                     <span>{name}</span>
                     <img
                       alt={`A front ${name} pokemon`}
-                      src={pokemon.sprites.front_default}
+                      src={information.image}
                     />
                   </S.NameContainer>
                   <span>R$ {H.priceFormat(itemPrice)}</span>
@@ -62,9 +76,18 @@ export default () => {
           <span>Total</span>
           <span>R$ {H.priceFormat(total)}</span>
         </S.Amount>
-        <Button>Finalizar</Button>
+        <Button onClick={handleOrderButton}>Finalizar</Button>
       </S.Cart>
       <S.BlackWindow id="blackwindow" />
+      <Modal
+        isVisible={isFinishModalVisible}
+        handleClose={closeModal}
+        title="Obrigado!!!"
+      >
+        <p>
+          Você ganhou de volta <strong>R$ {H.priceFormat(total / 10)}</strong>
+        </p>
+      </Modal>
     </>
   )
 }

@@ -11,6 +11,21 @@ const DataContext = React.createContext()
 
 function dataReducer(state, { type, payload }) {
   switch (type) {
+    case 'UPDATE_CART': {
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          ...payload,
+        },
+      }
+    }
+    case 'CLEAN_CART': {
+      return {
+        ...state,
+        cart: {},
+      }
+    }
     case 'SAVE_ENDPOINT_RESULT': {
       const { url, result } = payload
       return {
@@ -31,7 +46,7 @@ function dataReducer(state, { type, payload }) {
       }
     }
     case 'ADD_POKEMON_TO_CART': {
-      const { name, weight } = state.pokemons[payload]
+      const { name, weight, sprites } = state.pokemons[payload]
 
       return {
         ...state,
@@ -40,6 +55,7 @@ function dataReducer(state, { type, payload }) {
           [name]: {
             quantity: state.cart[name] ? state.cart[name].quantity + 1 : 1,
             price: weight,
+            image: sprites.front_default,
           },
         },
       }
@@ -82,12 +98,31 @@ export function DataProvider({ children, overwrite }) {
   const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE)
 
   useEffect(() => {
+    const storageCart = JSON.parse(localStorage.getItem('cart'))
+    if (Object.keys(storageCart).length > 0) {
+      updateCart(storageCart)
+    }
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart))
   }, [state.cart])
 
   useEffect(() => {
     localStorage.setItem('theme', state.theme)
   }, [state.theme])
+
+  const updateCart = payload =>
+    dispatch({
+      type: 'UPDATE_CART',
+      payload,
+    })
+
+  const cleanCart = payload =>
+    dispatch({
+      type: 'CLEAN_CART',
+      payload,
+    })
 
   const savePokemonData = payload =>
     dispatch({
@@ -129,6 +164,7 @@ export function DataProvider({ children, overwrite }) {
     <DataContext.Provider
       value={{
         ...state,
+        cleanCart,
         savePokemonData,
         saveEndpointResult,
         changeTheme,

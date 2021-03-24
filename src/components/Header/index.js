@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory } from 'react-router-dom'
+import { AiOutlineMenu } from 'react-icons/ai'
 
 import Search from 'components/Search'
 import Menu from 'components/Menu'
@@ -33,7 +34,7 @@ const LogoContainer = styled.div`
   padding: 16px;
 `
 
-export default () => {
+export default ({ handleMenuClick }) => {
   const history = useHistory()
   const { changeTheme } = useContext(DataContext)
 
@@ -55,6 +56,8 @@ export default () => {
         </Logo>
 
         <Search placeholder="Buscar Pokemon" onSubmit={searchPokemon} />
+
+        <AiOutlineMenu size="40px" color="white" onClick={handleMenuClick} />
       </LogoContainer>
       <Menu />
     </HeaderContainer>

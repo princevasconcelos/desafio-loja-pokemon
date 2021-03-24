@@ -1,13 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Cart = styled.aside`
   position: fixed;
   display: flex;
   flex-direction: column;
-  width: 124px;
+  width: 0;
   height: 100vh;
   max-height: 100vh;
-  padding: 16px;
+  padding: 0;
   background: #f8f8f8;
   overflow-y: auto;
   overflow-x: hidden;
@@ -17,43 +17,80 @@ export const Cart = styled.aside`
   transition: all 0.2s;
   border-left: 1px solid lightgray;
 
-  &:hover {
-    width: 320px;
+  @media (max-width: 600px) {
+    ${props => props.isVisible && css`
+    width: 100%;
+    padding: 16px;
 
     span,
-    #counter,
-    button {
-      display: block;
+      #counter,
+      button {
+        display: block;
+      }
+  
+      > strong {
+        text-align: left;
+        font-size: 18px;
+      }
+  `}
+  }
+
+  @media (min-width: 600px) {
+    width: 124px;
+    padding: 16px;
+
+    &:hover {
+      width: 320px;
+  
+      span,
+      #counter,
+      button {
+        display: block;
+      }
+  
+      > strong {
+        text-align: left;
+        font-size: 18px;
+      }
     }
 
     > strong {
-      text-align: left;
-      font-size: 18px;
+      text-align: center;
+      font-size: 14px;
+    }
+  
+    span,
+    #counter,
+    button {
+      display: none;
     }
   }
+`
+export const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 
-  > strong {
-    text-align: center;
-    font-size: 14px;
-  }
-
-  span,
-  #counter,
-  button {
-    display: none;
+  @media (min-width: 600px) {
+    svg {
+      display: none;
+    }
   }
 `
 
 export const BlackWindow = styled.div`
-  width: 0;
-  height: 0;
-  background: black;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transition: opacity 0.4s;
+  display: none;
+  @media (min-width: 600px) {
+    display: block;
+    width: 0;
+    height: 0;
+    background: black;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: opacity 0.4s;
+  }
 `
 
 export const Amount = styled.div`

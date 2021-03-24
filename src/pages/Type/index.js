@@ -29,9 +29,9 @@ export default () => {
   const typeEndpoint = `https://pokeapi.co/api/v2/type/${typeEN}?limit=${limit}&offset=${offset}`
 
   const getPokemonDetail = async pokemonList => {
-    const pokeData = await Promise.all(
+    const pokeData = await Promise.allSettled(
       pokemonList.map(({ url }) => API.get(url.slice(0, -1)))
-    ).then(res => res.filter(Boolean))
+    ).then(res => res.filter(r => r.status === 'fulfilled').map(p => p.value))
 
     saveEndpointResult({
       url: typeEndpoint,
@@ -71,7 +71,7 @@ export default () => {
     <TypeContainer>
       {type ? (
         <h1>
-          Todos os Pokemons do tipo <span>{type}</span>
+          Pokemons do tipo <span>{type}</span>
         </h1>
       ) : null}
       <Gallery data={data} loading={loading} />

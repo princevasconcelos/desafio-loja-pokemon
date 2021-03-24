@@ -6,19 +6,15 @@ export const DetailsContainer = styled.div`
     margin: 24px 0;
 
     h1 {
+        margin-top: 16px;
         font-size: 64px;
     }
 
-    > button {
-        font-weight: 700;
-        text-align: left;
+    > svg {
+        cursor: pointer;
 
         @media (min-width: 600px) {
             margin-left: 24px;
-        }
-
-        &:hover {
-            text-decoration: underline;
         }
     }
 `

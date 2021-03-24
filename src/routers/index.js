@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -27,18 +27,21 @@ const Content = styled.main`
 `
 
 export default () => {
+  const [showCart, setShowCart] = useState(false)
   const { theme } = useContext(DataContext)
 
+  const toggleMenu = () => setShowCart(v => !v)
+
   return (
-    <Router basename="/desafio-loja-pokemon">
+    <Router basename="/">
       <ThemeProvider theme={themes(theme)}>
-        <Header />
+        <Header handleMenuClick={toggleMenu} />
         <Content>
           <Route exact path="/" component={Home} />
           <Route exact path="/pokemon/:name?" component={Details} />
           <Route exact path="/tipo/:type?" component={Type} />
         </Content>
-        <Cart />
+        <Cart isVisible={showCart} handleCloseClick={toggleMenu} />
       </ThemeProvider>
     </Router>
   )

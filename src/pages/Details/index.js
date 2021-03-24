@@ -6,6 +6,7 @@ import API from 'service'
 import Loading from 'components/Loading'
 import Button from 'components/Button'
 import * as H from 'utils/helpers'
+import { IoIosArrowBack } from 'react-icons/io'
 
 import * as S from './styles'
 
@@ -82,7 +83,7 @@ export default () => {
 
   return (
     <S.DetailsContainer>
-      <button onClick={handleBack}>Voltar</button>
+      <IoIosArrowBack size="24px" onClick={handleBack} />
       <S.ImageContainer>
         <img
           alt={`A front ${name} pokemon`}

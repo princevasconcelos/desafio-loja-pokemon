@@ -33,26 +33,25 @@ export default () => {
 
   useEffect(() => {
     const cacheData = endpoints[pokemonEndpoint]
-
     if (cacheData) return setData(cacheData)
-
     return getAllPokemons()
   }, [])
 
   const getPokemonDetail = async pokemons => {
-    const pokeData = await Promise.all(
-      pokemons.map(({ url }) => API.get(url.slice(0, -1)))
-    ).then(res => res.filter(Boolean))
+    try {
+      const pokeData = await Promise.allSettled(
+        pokemons.map(({ url }) => API.get(url.slice(0, -1)))
+      ).then(res => res.filter(r => r.status === 'fulfilled').map(p => p.value))
 
-    console.log('prince', pokeData)
-    saveEndpointResult({
-      url: pokemonEndpoint,
-      result: pokeData,
-    })
-    savePokemonData(
-      pokeData.reduce((acc, cur) => ({ ...acc, [cur.name]: cur }), {})
-    )
-    setData(pokeData)
+      saveEndpointResult({
+        url: pokemonEndpoint,
+        result: pokeData,
+      })
+      savePokemonData(
+        pokeData.reduce((acc, cur) => ({ ...acc, [cur.name]: cur }), {})
+      )
+      setData(pokeData)
+    } catch (err) {}
   }
 
   return (

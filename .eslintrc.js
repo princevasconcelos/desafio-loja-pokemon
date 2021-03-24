@@ -32,6 +32,7 @@ module.exports = {
     'consistent-return': 'off',
     'eslintimport/no-extraneous-dependencies': 'off',
     'no-empty': 'off',
+    'no-lone-blocks': 'off',
     'react/no-unescaped-entities': 'off',
     'react/prop-types': 'off',
     'no-use-before-define': 'off',
