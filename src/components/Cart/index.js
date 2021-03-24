@@ -38,7 +38,7 @@ export default ({ isVisible, handleCloseClick }) => {
 
   return (
     <>
-      <S.Cart isVisible={isVisible}>
+      <S.Cart id="cart" isVisible={isVisible}>
         <S.HeaderContainer>
           <strong>Resumo do pedido</strong>
           <GrClose onClick={handleCloseClick} size="16px" />

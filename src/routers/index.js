@@ -27,10 +27,10 @@ const Content = styled.main`
 `
 
 export default () => {
-  const [showCart, setShowCart] = useState(false)
+  const [showCartOnMobile, setCartOnMobile] = useState(false)
   const { theme } = useContext(DataContext)
 
-  const toggleMenu = () => setShowCart(v => !v)
+  const toggleMenu = () => setCartOnMobile(v => !v)
 
   return (
     <Router basename="/">
@@ -41,7 +41,7 @@ export default () => {
           <Route exact path="/pokemon/:name?" component={Details} />
           <Route exact path="/tipo/:type?" component={Type} />
         </Content>
-        <Cart isVisible={showCart} handleCloseClick={toggleMenu} />
+        <Cart isVisible={showCartOnMobile} handleCloseClick={toggleMenu} />
       </ThemeProvider>
     </Router>
   )

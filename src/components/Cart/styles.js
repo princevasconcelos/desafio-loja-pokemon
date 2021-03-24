@@ -18,21 +18,23 @@ export const Cart = styled.aside`
   border-left: 1px solid lightgray;
 
   @media (max-width: 600px) {
-    ${props => props.isVisible && css`
-    width: 100%;
-    padding: 16px;
+    ${props =>
+      props.isVisible &&
+      css`
+        width: 100%;
+        padding: 16px;
 
-    span,
-      #counter,
-      button {
-        display: block;
-      }
-  
-      > strong {
-        text-align: left;
-        font-size: 18px;
-      }
-  `}
+        span,
+        #counter,
+        button {
+          display: block;
+        }
+
+        > strong {
+          text-align: left;
+          font-size: 18px;
+        }
+      `}
   }
 
   @media (min-width: 600px) {
@@ -41,13 +43,13 @@ export const Cart = styled.aside`
 
     &:hover {
       width: 320px;
-  
+
       span,
       #counter,
       button {
         display: block;
       }
-  
+
       > strong {
         text-align: left;
         font-size: 18px;
@@ -58,7 +60,7 @@ export const Cart = styled.aside`
       text-align: center;
       font-size: 14px;
     }
-  
+
     span,
     #counter,
     button {

@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory } from 'react-router-dom'
-import { AiOutlineMenu } from 'react-icons/ai'
+import { FiShoppingCart } from "react-icons/fi";
+import { CgPokemon } from 'react-icons/cg'
 
 import Search from 'components/Search'
 import Menu from 'components/Menu'
 import DataContext from 'contexts/data'
-
-import { CgPokemon } from 'react-icons/cg'
 
 const HeaderContainer = styled.div`
   background: ${props => props.theme.colors.primary};
@@ -32,11 +31,36 @@ const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 16px;
+
+  > svg {
+    display: block;
+
+    @media (min-width: 600px) {
+      display: none;
+    }
+  }
+`
+
+const CartContainer = styled.div`
+  position: relative;
+
+  > span {
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    left: calc(50% - 4px);
+    background: ${props => props.theme.colors.secondary};
+    border-radius: 50%;
+    padding: 1px 5px;
+    font-size: 12px;
+  }
 `
 
 export default ({ handleMenuClick }) => {
   const history = useHistory()
-  const { changeTheme } = useContext(DataContext)
+  const { changeTheme, cart } = useContext(DataContext)
+
+  const hasCartValues = Object.keys(cart)
 
   const handleLogoClick = () => changeTheme('normal')
 
@@ -57,7 +81,12 @@ export default ({ handleMenuClick }) => {
 
         <Search placeholder="Buscar Pokemon" onSubmit={searchPokemon} />
 
-        <AiOutlineMenu size="40px" color="white" onClick={handleMenuClick} />
+        {hasCartValues.length > 0
+          ? <CartContainer>
+              <span>{hasCartValues.length}</span>
+              <FiShoppingCart size="40px" color="white" onClick={handleMenuClick} />
+          </CartContainer>
+          : null}
       </LogoContainer>
       <Menu />
     </HeaderContainer>
