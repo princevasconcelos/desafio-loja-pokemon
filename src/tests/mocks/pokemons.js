@@ -697,3 +697,4 @@ export default {
 }
 
 export const PokemonsMockList = [pikachu, charmander, bulbasaur, squirtle]
+export const bulbasaurMock = bulbasaur

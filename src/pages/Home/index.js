@@ -43,6 +43,8 @@ export default () => {
         pokemons.map(({ url }) => API.get(url.slice(0, -1)))
       ).then(res => res.filter(r => r.status === 'fulfilled').map(p => p.value))
 
+      if (pokeData.length === 0) return
+
       saveEndpointResult({
         url: pokemonEndpoint,
         result: pokeData,

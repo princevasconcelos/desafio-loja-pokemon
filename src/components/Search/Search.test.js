@@ -1,19 +1,20 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import Search from './index'
 
 describe('<Search />', () => {
-  test(`should handle user type`, () => {
-    const onChange = jest.fn()
-    render(<Search value="" onChange={onChange} />)
-
-    userEvent.type(
-      screen.getByLabelText('Busque por artistas, álbuns ou músicas'),
-      'iron maiden'
+  test(`should call onSubmit fn when user submits the form`, () => {
+    const onSubmit = jest.fn()
+    const { container } = render(
+      <Search placeholder="pesquisar pokemon" onSubmit={onSubmit} />
     )
 
-    expect(onChange).toHaveBeenCalledTimes(11)
+    userEvent.type(screen.getByPlaceholderText('pesquisar pokemon'), 'pikachu')
+
+    fireEvent.submit(container.querySelector('form'))
+
+    expect(onSubmit).toHaveBeenCalledTimes(1)
   })
 })

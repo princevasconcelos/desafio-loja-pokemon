@@ -9,12 +9,6 @@ import themes from 'themes'
 export const renderWithTheme = children =>
   render(<ThemeProvider theme={themes()}>{children}</ThemeProvider>)
 
-// export const renderWithContext = ({ component, value }) => render(
-//   <DataProvider overwrite={value}>
-//       {component}
-//   </DataProvider>
-// )
-
 export const renderWithThemeAndContext = ({ component, value }) =>
   render(
     <ThemeProvider theme={themes()}>

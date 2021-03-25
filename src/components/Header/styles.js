@@ -9,6 +9,7 @@ export const Logo = styled(Link)`
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: 16px;
   color: ${props => props.theme.colors.tertiary};
 
   > strong {
@@ -24,6 +25,7 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 16px;
+  justify-content: space-between;
 
   > svg {
     display: block;
@@ -37,6 +39,7 @@ export const LogoContainer = styled.div`
 export const CartContainer = styled.button`
   position: relative;
   display: block;
+  margin-left: 16px;
 
   @media (min-width: 600px) {
     display: none;
