@@ -1,9 +1,6 @@
 import React from 'react'
-import { act, render, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-// import { createMemoryHistory } from 'history'
-
-// import API from 'service'
 
 import CartMock from 'tests/mocks/cart'
 import PokemonsMock from 'tests/mocks/pokemons'
@@ -49,8 +46,8 @@ describe('<Cart />', () => {
     texts.forEach(t => expect(screen.getByText(t)).toBeVisible())
   })
 
-  test.only(`should recalculate price when user add/remove pokemons to cart`, async () => {
-    const { debug } = U.renderWithThemeAndContext({
+  test(`should recalculate price when user add/remove pokemons to cart`, async () => {
+     U.renderWithThemeAndContext({
       component: <Cart />,
       value: {
         cart: CartMock,
@@ -63,5 +60,9 @@ describe('<Cart />', () => {
         name: '+',
       })[0]
     )
+
+    await waitFor(() => {
+      expect(screen.getByText('R$ 1,095')).toBeVisible()
+    })
   })
 })

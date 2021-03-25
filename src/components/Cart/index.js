@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GrClose } from 'react-icons/gr'
+import { useHistory } from 'react-router-dom'
 
 import Button from 'components/Button'
 import Counter from 'components/Counter'
@@ -10,6 +11,7 @@ import * as H from 'utils/helpers'
 import * as S from './styles'
 
 export default ({ isVisible = true, handleCloseClick }) => {
+  const history = useHistory()
   const [isFinishModalVisible, setFinishModal] = useState(false)
   const {
     cart,
@@ -17,6 +19,7 @@ export default ({ isVisible = true, handleCloseClick }) => {
     removePokemon,
     cleanPokemon,
     cleanCart,
+    changeTheme
   } = useContext(DataContext)
   const hasValues = Object.entries(cart)
   let total = 0
@@ -28,6 +31,8 @@ export default ({ isVisible = true, handleCloseClick }) => {
   const closeModal = () => {
     setFinishModal(false)
     cleanCart()
+    history.push('/')
+    changeTheme('normal')
   }
 
   if (hasValues.length === 0) return <></>
@@ -81,7 +86,8 @@ export default ({ isVisible = true, handleCloseClick }) => {
         title="Obrigado!!!"
       >
         <p>
-          Você ganhou de volta <strong>R$ {H.priceFormat(total / 10)}</strong>
+          Você ganhou <strong>R$ {H.priceFormat(total / 10)}</strong> de
+          cashback
         </p>
       </Modal>
     </>

@@ -24,10 +24,13 @@ describe('<Modal />', () => {
       ),
     })
 
-    userEvent.click(screen.getByRole('button'))
-
     expect(screen.getByText('header')).toBeVisible()
     expect(screen.getByText('body')).toBeVisible()
-    expect(handleClose).toHaveBeenCalledTimes(1)
+
+
+    const [closeIcon, finishButton] = screen.getAllByRole('button')
+    userEvent.click(closeIcon)
+    userEvent.click(finishButton)
+    expect(handleClose).toHaveBeenCalledTimes(2)
   })
 })
