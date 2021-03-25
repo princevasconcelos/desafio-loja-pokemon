@@ -95,12 +95,22 @@ function dataReducer(state, { type, payload }) {
 }
 
 export function DataProvider({ children, overwrite }) {
-  const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE)
+  const [state, dispatch] = useReducer(dataReducer, overwrite || INITIAL_STATE)
 
   useEffect(() => {
-    const storageCart = JSON.parse(localStorage.getItem('cart'))
-    if (Object.keys(storageCart).length > 0) {
-      updateCart(storageCart)
+    const storageCart = localStorage.getItem('cart')
+    const storageTheme = localStorage.getItem('theme')
+
+    if (storageCart) {
+      const parsedCart = JSON.parse(storageCart)
+
+      if (Object.keys(parsedCart).length > 0) {
+        updateCart(parsedCart)
+      }
+    }
+
+    if (storageTheme) {
+      changeTheme(storageTheme)
     }
   }, [])
 
