@@ -7,6 +7,6 @@ describe('<Loading />', () => {
   test(`should render on screen`, () => {
     render(<Loading />)
 
-    expect(screen.getByTestId('loading')).toBeVisible()
+    expect(screen.getByRole('status')).toBeVisible()
   })
 })

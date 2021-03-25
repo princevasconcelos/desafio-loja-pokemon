@@ -57,7 +57,7 @@ const types = {
   },
 }
 
-const global = {
+const defaultTheme = {
   fire: '#de5239',
   water: '#8bc5cd',
   grass: '#62d5b4',
@@ -69,7 +69,7 @@ const global = {
 
 export default theme => ({
   colors: {
-    ...global,
+    ...defaultTheme,
     ...(theme && { ...types[theme].colors }),
   },
 })

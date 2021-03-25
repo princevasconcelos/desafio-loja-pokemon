@@ -34,7 +34,7 @@ export const LogoContainer = styled.div`
   }
 `
 
-export const CartContainer = styled.div`
+export const CartContainer = styled.button`
   position: relative;
   display: block;
 
@@ -43,6 +43,9 @@ export const CartContainer = styled.div`
   }
 
   > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     color: white;
     font-weight: 700;

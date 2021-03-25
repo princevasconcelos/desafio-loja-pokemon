@@ -30,7 +30,7 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'consistent-return': 'off',
-    'eslintimport/no-extraneous-dependencies': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'no-empty': 'off',
     'no-lone-blocks': 'off',
     'react/no-unescaped-entities': 'off',

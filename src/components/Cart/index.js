@@ -9,8 +9,8 @@ import Modal from 'components/Modal'
 import * as H from 'utils/helpers'
 import * as S from './styles'
 
-export default ({ isVisible, handleCloseClick }) => {
-  const [isFinishModalVisible, setFinishModal] = useState()
+export default ({ isVisible = true, handleCloseClick }) => {
+  const [isFinishModalVisible, setFinishModal] = useState(false)
   const {
     cart,
     buyPokemon,
@@ -25,7 +25,6 @@ export default ({ isVisible, handleCloseClick }) => {
   const handleDecrease = name => removePokemon(name)
   const handleClean = name => cleanPokemon(name)
   const handleOrderButton = () => setFinishModal(true)
-
   const closeModal = () => {
     setFinishModal(false)
     cleanCart()

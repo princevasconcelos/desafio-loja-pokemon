@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const NavContainer = styled.nav`
-    background: #333;
 
     ul {
         display: flex;
@@ -28,7 +27,7 @@ export const MenuItem = styled.li`
   background: ${props =>
     props.selected === props.itemColor
       ? props.theme.colors[props.itemColor]
-      : '#eee'};
+      : 'white'};
 
   &:hover {
     background: ${props => props.theme.colors[props.itemColor]};

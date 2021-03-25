@@ -3,3 +3,29 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
+
+const localStorageMock = (function () {
+  const store = {
+    cart: {},
+    theme: ''
+  }
+  return {
+    getItem(key) {
+      return store[key]
+    },
+    setItem(key, value) {
+      store[key] = value
+    },
+    values() {
+      return store
+    },
+  }
+})()
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+})
+
+Object.defineProperty(JSON, 'parse', {
+  value: v => v,
+})

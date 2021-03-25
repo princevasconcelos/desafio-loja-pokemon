@@ -55,6 +55,7 @@ export default () => {
 
   useEffect(() => {
     if (!name) return
+    if (error) setError(null)
 
     const cacheData = pokemons[name]
     if (cacheData) return setData(cacheData)
