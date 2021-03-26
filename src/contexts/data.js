@@ -46,7 +46,11 @@ function dataReducer(state, { type, payload }) {
       }
     }
     case 'ADD_POKEMON_TO_CART': {
-      const { name, weight, sprites } = state.pokemons[payload]
+      const pokemon = state.pokemons[payload] || state.cart[payload]
+
+      const name = pokemon.name || payload
+      const weight = pokemon.weight || pokemon.price
+      const sprites = (pokemon.sprites || {}).front_default || pokemon.image
 
       return {
         ...state,
@@ -55,7 +59,7 @@ function dataReducer(state, { type, payload }) {
           [name]: {
             quantity: state.cart[name] ? state.cart[name].quantity + 1 : 1,
             price: weight,
-            image: sprites.front_default,
+            image: sprites,
           },
         },
       }
