@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/desafio-loja-pokemon/static/js/main.e14b41b9.chunk.js",
-    "main.js.map": "/desafio-loja-pokemon/static/js/main.e14b41b9.chunk.js.map",
+    "main.js": "/desafio-loja-pokemon/static/js/main.43557bd0.chunk.js",
+    "main.js.map": "/desafio-loja-pokemon/static/js/main.43557bd0.chunk.js.map",
     "runtime-main.js": "/desafio-loja-pokemon/static/js/runtime-main.2a71adb2.js",
     "runtime-main.js.map": "/desafio-loja-pokemon/static/js/runtime-main.2a71adb2.js.map",
     "static/css/2.c3a20e44.chunk.css": "/desafio-loja-pokemon/static/css/2.c3a20e44.chunk.css",
-    "static/js/2.1cb357a6.chunk.js": "/desafio-loja-pokemon/static/js/2.1cb357a6.chunk.js",
-    "static/js/2.1cb357a6.chunk.js.map": "/desafio-loja-pokemon/static/js/2.1cb357a6.chunk.js.map",
+    "static/js/2.2164b9de.chunk.js": "/desafio-loja-pokemon/static/js/2.2164b9de.chunk.js",
+    "static/js/2.2164b9de.chunk.js.map": "/desafio-loja-pokemon/static/js/2.2164b9de.chunk.js.map",
     "static/js/3.f5750fd4.chunk.js": "/desafio-loja-pokemon/static/js/3.f5750fd4.chunk.js",
     "static/js/3.f5750fd4.chunk.js.map": "/desafio-loja-pokemon/static/js/3.f5750fd4.chunk.js.map",
     "index.html": "/desafio-loja-pokemon/index.html",
     "static/css/2.c3a20e44.chunk.css.map": "/desafio-loja-pokemon/static/css/2.c3a20e44.chunk.css.map",
-    "static/js/2.1cb357a6.chunk.js.LICENSE.txt": "/desafio-loja-pokemon/static/js/2.1cb357a6.chunk.js.LICENSE.txt",
+    "static/js/2.2164b9de.chunk.js.LICENSE.txt": "/desafio-loja-pokemon/static/js/2.2164b9de.chunk.js.LICENSE.txt",
     "static/media/index.css": "/desafio-loja-pokemon/static/media/montserrat-vietnamese-400-normal.6325549b.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.2a71adb2.js",
     "static/css/2.c3a20e44.chunk.css",
-    "static/js/2.1cb357a6.chunk.js",
-    "static/js/main.e14b41b9.chunk.js"
+    "static/js/2.2164b9de.chunk.js",
+    "static/js/main.43557bd0.chunk.js"
   ]
 }
