@@ -35,9 +35,9 @@ export default ({ handleMenuClick }) => {
         <Search placeholder="Buscar Pokemon" onSubmit={searchPokemon} />
 
         {hasCartValues.length > 0
-          ? <S.CartContainer>
+          ? <S.CartContainer onClick={handleMenuClick}>
               <span>{hasCartValues.length}</span>
-              <FiShoppingCart size="40px" color="white" onClick={handleMenuClick} />
+              <FiShoppingCart size="40px" color="white" />
           </S.CartContainer>
           : null}
       </S.LogoContainer>

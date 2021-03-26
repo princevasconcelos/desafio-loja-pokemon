@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-export const Modal = styled.div`
+export const Modal = styled.dialog`
   background-color: #eee;
   display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   position: fixed;

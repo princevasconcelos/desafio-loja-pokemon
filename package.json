@@ -2,7 +2,7 @@
   "name": "desafio-loja-pokemon",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/desafio-loja-pokemon",
+  "homepage": "https://princevasconcelos.github.io/desafio-loja-pokemon/",
   "author": "Prince Vasconcelos",
   "license": "ISC",
   "keywords": [
@@ -24,6 +24,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "cypress": "^6.8.0",
     "eslint": "^7.22.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",

@@ -79,7 +79,9 @@ export default ({ isVisible = true, handleCloseClick }) => {
         </S.Amount>
         <Button onClick={handleOrderButton}>Finalizar</Button>
       </S.Cart>
+
       <S.BlackWindow id="blackwindow" />
+
       <Modal
         isVisible={isFinishModalVisible}
         handleClose={closeModal}
