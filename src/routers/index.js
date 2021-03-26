@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { HashRouter as Router, Route } from 'react-router-dom'
 
 import Home from 'pages/Home'
 import Details from 'pages/Details'
@@ -33,7 +33,7 @@ export default () => {
   const toggleMenu = () => setCart(v => !v)
 
   return (
-    <Router basename="/desafio-loja-pokemon">
+    <Router basename="/">
       <ThemeProvider theme={themes(theme)}>
         <Header handleMenuClick={toggleMenu} />
         <Content>
