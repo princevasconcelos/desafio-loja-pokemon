@@ -33,7 +33,7 @@ export default () => {
   const toggleMenu = () => setCart(v => !v)
 
   return (
-    <Router basename="/">
+    <Router basename="/desafio-loja-pokemon">
       <ThemeProvider theme={themes(theme)}>
         <Header handleMenuClick={toggleMenu} />
         <Content>
