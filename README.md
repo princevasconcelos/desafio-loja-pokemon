@@ -1,35 +1,40 @@
-Parabéns pessoa, **nós escolhemos você** para o nosso processo seletivo!
+# Pokemon Shop
 
-Aqui na B2W Digital estamos sempre em busca de pessoas que estejam dispostas a achar todas as insígnias para resolver um problema. E para isso estamos propondo a você um desafio, mas não se preocupe, você conseguirá fazê-lo sentado em sua cadeira.
+Aplicação de e-commerce em React que utiliza a **[pokeapi](https://pokeapi.co/)([https://pokeapi.co/](https://pokeapi.co/))**
 
-Nós somos a holding de 4 das maiores lojas virtuais e marketplaces da América Latina. Sabendo disso, queremos que você vivencie a experiência de construir uma loja virtual, e nos mostre como você imaginaria ser uma loja de Pokémon.
+### Demonstração
 
-Isso talvez não seja mais um mistério, mas atualmente tratamos as nossas lojas como uma base de código com 4 estilos diferentes.
+Caso queira ver a aplicação funcionando basta clicar no link abaixo:
 
-![https://media.giphy.com/media/ZYECZQqMsmvUbnxeVp/giphy.gif](https://media.giphy.com/media/ZYECZQqMsmvUbnxeVp/giphy.gif)
+[https://princevasconcelos.github.io/desafio-loja-pokemon/#/](https://princevasconcelos.github.io/desafio-loja-pokemon/#/)
 
-Queremos saber como você faria isso no seu desafio, **desejamos no mínimo 2 lojas para 2 tipos(água, fogo, dragão, etc.) de Pokémon** com estilos diferentes, mantendo o mesmo comportamento.
+### Requisitos
 
-Os Pokémon(sim, esse é o plural) deverão ser mostrados a partir da **[pokeapi](https://pokeapi.co/)([https://pokeapi.co/](https://pokeapi.co/))**, uma api com dados de todos os Pokémon *(ou quase todos)*. Após requisitar os Pokémon, os preços podem ser definidos aleatoriamente, só esteja preocupado em **manter a consistência entre o carrinho lateral e o preço mostrado no catálogo**.
+1. Ter o node instalado (npm)
 
-Nosso time de designers sugeriu como uma loja virtual deveria se aparentar, e queremos ver a sua criatividade em jogo para transformar esses rabiscos em algo funcional.
+### Funcionalidades
 
-![wireframe.jpg](wireframe.jpg)
+1. Theming utilizando o Styled-Components
+2. Cache utilizando a Context API
+3. Tests unitários e integração (React-testing-library) e e2e (Cypress)
 
-Não se assuste! Nosso time imaginou muitas funcionalidades, mas você poderá fazer somente o elencado abaixo pois utilizaremos sua loja da mesma forma. O MVP consiste em:
+### Stack
 
-- Catálogo de produtos
-- Carrinho lateral
-- Resumo do carrinho
-- 2 lojas com estilos e tipos diferentes de Pokémon
+1. [ReactJs](https://pt-br.reactjs.org/)
+2. [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+3. [Styled Components](https://styled-components.com/)
+4. [Jest](https://jestjs.io/)
+5. [React Testing Library](https://testing-library.com/)
+6. [Webpack](https://webpack.js.org/)
 
-Caso isso tudo seja pouco e você queira batalhar em outros ginásios, não se preocupe, está permitido fazer tudo o que sua imaginação permitir e nos impressionar. Abaixo segue outras ideias propostas nesse rabisco.
+### Executar aplicação para desenvolvimento local
 
-- Barra de busca para filtrar os Pokémon
-- Botão de finalizar compra, reiniciando o processo de compra
-- Modal de obrigado ao finalizar compra
-- Salvar os dados da compra do usuário localmente para não perdê-las ao atualizar a página
+```
+npm run start
+```
 
-Recomendamos a utilização da biblioteca ReactJS com o comando create-react-app, mas sinta-se livre para utilizar a tecnologia que preferir, mas não se esqueça que uma aplicação shiny é uma aplicação bem testada e que funcione em todos os tamanhos de tela.
+### Executar testes
 
-Esperamos que você tenha gostado do desafio e que esteja ansioso para evoluir seus Pokémon conosco na B2W. Nos responda quanto tempo você deseja para realizar o desafio e o que achou dele, queremos saber como podemos fazer melhor para conseguirmos os melhores treinadores no nosso time!
+```
+npm run test
+```
